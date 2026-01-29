@@ -9,7 +9,7 @@
 * **Datenmanagement:** Benutzerdaten und Aufgabenlisten sind auf einer **MySQL-Datenbank** optimiert.
 * **Umfang:** Diese Arbeit wurde als **beispielhaftes Projekt** erstellt und verdeutlicht die Logik von Datenbankmanagement sowie dynamischer Content-Erstellung.
 
-#### DEMO: [https://pausentracker.infinityfree.me/login.php](https://pausentracker.infinityfree.me/login.php)
+#### DEMO: [https://pausentracker.infinityfree.me](https://pausentracker.infinityfree.me)
 
 ---
 

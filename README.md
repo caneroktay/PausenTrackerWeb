@@ -1,15 +1,12 @@
-
-
 ![Pausen Tracker](img/README/PausenTracker_slayt.png)
 
-
-
+#### Diese Webanwendung ist eine funktionale „Pausentracker“-App, die zur Verfolgung und Verwaltung von Pausenzeiten entwickelt wurde.
 
 * **Backend:** Die Anwendung wurde serverseitig mit **PHP** entwickelt.
 * **Datenmanagement:** Benutzerdaten und Aufgabenlisten sind auf einer **MySQL-Datenbank** optimiert.
 * **Umfang:** Diese Arbeit wurde als **beispielhaftes Projekt** erstellt und verdeutlicht die Logik von Datenbankmanagement sowie dynamischer Content-Erstellung.
 
-#### DEMO: [https://pausentracker.infinityfree.me](https://pausentracker.infinityfree.me)
+## DEMO: [https://pausentracker.infinityfree.me](https://pausentracker.infinityfree.me)
 
 ---
 
@@ -59,9 +56,6 @@ define('DB_PASS', '');            // Ihr MySQL-Passwort
 ```
 
 ### 4. Anwendung starten
-
-
-
 
 1. Starten Sie Ihren lokalen Webserver (Apache) und MySQL/MariaDB
 2. Öffnen Sie Ihren Browser

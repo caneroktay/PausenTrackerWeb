@@ -1,7 +1,6 @@
 <?php
 require_once 'config.php';
 
-// Zaten giriş yapılmışsa ana sayfaya yönlendir
 if (isLoggedIn()) {
     header("Location: index.php");
     exit;
@@ -10,13 +9,13 @@ if (isLoggedIn()) {
 $error = '';
 $success = '';
 
-// Login işlemi
+// Login 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     $username = trim($_POST['username']);
     $password = $_POST['password'];
     
     if (empty($username) || empty($password)) {
-        $error = 'Kullanıcı adı ve şifre gereklidir.';
+        $error = 'Benutzername und Passwort sind erforderlich.';
     } else {
         $stmt = $pdo->prepare("SELECT id, username, password FROM users WHERE username = ?");
         $stmt->execute([$username]);
@@ -28,12 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
             header("Location: index.php");
             exit;
         } else {
-            $error = 'Kullanıcı adı veya şifre hatalı.';
+            $error = 'Benutzername oder Passwort falsch.';
         }
     }
 }
 
-// Kayıt işlemi
+// Register
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
     $username = trim($_POST['reg_username']);
     $email = trim($_POST['reg_email']);
@@ -41,26 +40,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
     $password_confirm = $_POST['reg_password_confirm'];
     
     if (empty($username) || empty($password)) {
-        $error = 'Kullanıcı adı ve şifre gereklidir.';
+        $error = 'Benutzername und Passwort sind erforderlich.';
     } elseif ($password !== $password_confirm) {
-        $error = 'Şifreler eşleşmiyor.';
+        $error = 'Passwörter stimmen nicht überein.';
     } elseif (strlen($password) < 6) {
-        $error = 'Şifre en az 6 karakter olmalıdır.';
+        $error = 'Das Passwort muss mindestens 6 Zeichen lang sein.';
     } else {
-        // Kullanıcı adı kontrolü
+        // Benutzername-Kontrolle
         $stmt = $pdo->prepare("SELECT id FROM users WHERE username = ?");
         $stmt->execute([$username]);
         
         if ($stmt->fetch()) {
-            $error = 'Bu kullanıcı adı zaten kullanılıyor.';
+            $error = 'Dieser Benutzername wird bereits verwendet.';
         } else {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             $stmt = $pdo->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
             
             if ($stmt->execute([$username, $email, $hashed_password])) {
-                $success = 'Kayıt başarılı! Giriş yapabilirsiniz.';
+                $success = 'Registrierung erfolgreich! Sie können sich jetzt anmelden.';
             } else {
-                $error = 'Kayıt sırasında bir hata oluştu.';
+                $error = 'Während der Registrierung ist ein Fehler aufgetreten.';
             }
         }
     }
@@ -71,7 +70,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Pausen Tracker</title>
+    <title>Pausen Tracker - Login</title>
+    <link rel="apple-touch-icon" href="./img/PauseTrackerIcon.png"> 
+	<link rel="apple-touch-icon" sizes="152x152" href="./img/PauseTrackerIcon.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="./img/PauseTrackerIcon.png">
+	<link rel="apple-touch-icon" sizes="167x167" href="./img/PauseTrackerIcon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="./img/PauseTrackerIcon.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="./img/PauseTrackerIcon.png">
+
     <style>
         * {
             margin: 0;
@@ -81,12 +87,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background:  linear-gradient(180deg, #203e5c 0%, #6f7b87 100%);
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            flex: 1;
         }
 
         .login-container {
@@ -98,13 +112,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
             width: 100%;
             display: flex;
             min-height: 500px;
+            margin-top: 50px;
         }
 
         .login-left {
             flex: 1;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: white;
             padding: 60px 40px;
-            color: white;
+            color: #1d3757;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -116,7 +131,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
             width: 120px;
             height: 120px;
             margin-bottom: 30px;
-            filter: brightness(0) invert(1);
         }
 
         .login-left h1 {
@@ -243,6 +257,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
             transform: translateY(0);
         }
 
+        .footer {
+            color: #ccc;
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 0.9em;
+            width: 100%;
+            margin-top: auto;
+        }
+        
+        .footer a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer a:hover {
+            color: #fff;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+
         @media (max-width: 768px) {
             .login-container {
                 flex-direction: column;
@@ -259,9 +302,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-left">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpolyline points='12 6 12 12 16 14'/%3E%3C/svg%3E" alt="Clock Icon">
+    <div class="content-wrapper">
+        <div class="login-container">
+            <div class="login-left">
+            <img src="./img/PauseTrackerIcon.png" alt=" Icon">
             <h1>Pausen Tracker</h1>
             <p>Pausenzeiten und Unterrichtszeiten verfolgen. Ihre persönliche Zeitmanagement-Lösung.</p>
         </div>
@@ -318,21 +362,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
                 </form>
             </div>
         </div>
+        </div>
     </div>
 
     <script>
         function switchTab(tab) {
-            // Tab butonlarını güncelle
+            // Tab-Buttons aktualisieren
             document.querySelectorAll('.tab-button').forEach(btn => {
                 btn.classList.remove('active');
             });
             
-            // Tab içeriklerini güncelle
+            // Tab-Inhalte aktualisieren
             document.querySelectorAll('.tab-content').forEach(content => {
                 content.classList.remove('active');
             });
             
-            // Aktif tab'ı göster
+            // Aktiven Tab anzeigen
             if (tab === 'login') {
                 document.querySelector('.tab-button:first-child').classList.add('active');
                 document.getElementById('login-tab').classList.add('active');
@@ -342,5 +387,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
             }
         }
     </script>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>2025 Pausen Tracker</p>
+            <p>
+                <small>Diese Seite wurde als persönliches Bildungsprojekt konzipiert. <u>Alle Daten werden in der Datenbank gespeichert.</u></small>
+            </p>
+             <p>
+                <small>© caneroktay.com All Rights Received.</small>
+            </p>
+        </div>
+    </footer>
 </body>
+
 </html>

@@ -5,7 +5,7 @@ define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_NAME', 'pausen_tracker');
 
-// Veritabanı bağlantısı oluştur
+
 try {
     $pdo = new PDO(
         "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4",
@@ -21,17 +21,17 @@ try {
     die("Veritabanı bağlantı hatası: " . $e->getMessage());
 }
 
-// Session başlat
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Kullanıcı girişi kontrolü
+
 function isLoggedIn() {
     return isset($_SESSION['user_id']) && !empty($_SESSION['user_id']);
 }
 
-// Kullanıcı bilgilerini al
+
 function getCurrentUser() {
     global $pdo;
     if (!isLoggedIn()) {
@@ -43,7 +43,7 @@ function getCurrentUser() {
     return $stmt->fetch();
 }
 
-// Çıkış işlemi
+
 function logout() {
     session_unset();
     session_destroy();

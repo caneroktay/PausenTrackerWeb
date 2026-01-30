@@ -71,13 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pausen Tracker - Login</title>
-    <link rel="apple-touch-icon" href="./img/PauseTrackerIcon.png"> 
-	<link rel="apple-touch-icon" sizes="152x152" href="./img/PauseTrackerIcon.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="./img/PauseTrackerIcon.png">
-	<link rel="apple-touch-icon" sizes="167x167" href="./img/PauseTrackerIcon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="./img/PauseTrackerIcon.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="./img/PauseTrackerIcon.png">
-
     <style>
         * {
             margin: 0;
@@ -300,12 +293,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
             }
         }
     </style>
+	<link rel="apple-touch-icon" sizes="152x152" href="assets/img/PauseTrackerIcon.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="assets/img/PauseTrackerIcon.png">
+	<link rel="apple-touch-icon" sizes="167x167" href="assets/img/PauseTrackerIcon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/img/PauseTrackerIcon.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="assets/img/PauseTrackerIcon.png">
 </head>
 <body>
     <div class="content-wrapper">
         <div class="login-container">
             <div class="login-left">
-            <img src="./img/PauseTrackerIcon.png" alt=" Icon">
+            <img src="assets/img/PauseTrackerIcon.png" alt=" Icon">
             <h1>Pausen Tracker</h1>
             <p>Pausenzeiten und Unterrichtszeiten verfolgen. Ihre persönliche Zeitmanagement-Lösung.</p>
         </div>

@@ -35,7 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_settings'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pausen Tracker</title>
-
+    <meta name="theme-color" content="#203e5c">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="apple-touch-icon" href="./img/PauseTrackerIcon.png">
 	<link rel="apple-touch-icon" sizes="152x152" href="./img/PauseTrackerIcon.png">
 	<link rel="apple-touch-icon" sizes="180x180" href="./img/PauseTrackerIcon.png">

@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+require_once 'core/config.php';
 
 if (isLoggedIn()) {
     header("Location: index.php");

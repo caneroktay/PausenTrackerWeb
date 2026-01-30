@@ -71,18 +71,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pausen Tracker - Login</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background:  linear-gradient(180deg, #203e5c 0%, #6f7b87 100%);
-            min-height: 100vh;
-            display: flex;
             flex-direction: column;
             padding: 20px;
             margin: 0;
@@ -92,15 +84,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            flex: 1;
-        }
-
-        .login-container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
             max-width: 900px;
             width: 100%;
             display: flex;
@@ -108,13 +91,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
             margin-top: 50px;
         }
 
-        .login-left {
-            flex: 1;
-            background: white;
-            padding: 60px 40px;
-            color: #1d3757;
-            display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
@@ -129,36 +105,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
         .login-left h1 {
             font-size: 32px;
             margin-bottom: 15px;
-        }
-
-        .login-left p {
-            font-size: 16px;
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-
-        .login-right {
-            flex: 1;
-            padding: 60px 40px;
-        }
-
-        .tab-buttons {
             display: flex;
             margin-bottom: 30px;
             border-bottom: 2px solid #e0e0e0;
         }
-
-        .tab-button {
-            flex: 1;
-            padding: 12px;
             background: none;
             border: none;
             font-size: 16px;
             font-weight: 600;
-            color: #999;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
         }
 
         .tab-button.active {
@@ -363,38 +317,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
         </div>
     </div>
 
-    <script>
-        function switchTab(tab) {
-            // Tab-Buttons aktualisieren
-            document.querySelectorAll('.tab-button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Tab-Inhalte aktualisieren
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            
-            // Aktiven Tab anzeigen
-            if (tab === 'login') {
-                document.querySelector('.tab-button:first-child').classList.add('active');
-                document.getElementById('login-tab').classList.add('active');
-            } else {
-                document.querySelector('.tab-button:last-child').classList.add('active');
-                document.getElementById('register-tab').classList.add('active');
-            }
-        }
-    </script>
-    <footer class="footer">
-        <div class="footer-content">
-            <p>2025 Pausen Tracker</p>
-            <p>
-                <small>Diese Seite wurde als persönliches Bildungsprojekt konzipiert. <u>Alle Daten werden in der Datenbank gespeichert.</u></small>
-            </p>
-             <p>
-                <small>© caneroktay.com All Rights Received.</small>
-            </p>
-        </div>
-    </footer>
+    <?php require_once 'components/footerComponent.php'; ?>
 </body>
+<script src="js/main.js"></script>
 </html>

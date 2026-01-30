@@ -502,18 +502,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_settings'])) {
     </div>
         </div>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <p>2025 Pausen Tracker</p>
-            <p>
-                <small>Diese Seite wurde als persönliches Bildungsprojekt konzipiert. <u>Alle Daten werden in der Datenbank gespeichert.</u></small>
-            </p>
-             <p>
-                <small>© caneroktay.com All Rights Received.</small>
-            </p>
-        </div>
-    </footer>
-    
     <script>
         let schedule = <?= $time_windows ?: '[]' ?>;
         
@@ -785,5 +773,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_settings'])) {
         setInterval(updateClock, 1000);
         updateClock();
     </script>
+    <?php require_once 'components/footerComponent.php'; ?>
+
 </body>
 </html>

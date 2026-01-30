@@ -1,7 +1,6 @@
 <?php
 require_once 'config.php';
 
-// Login-Prüfung
 if (!isLoggedIn()) {
     header("Location: login.php");
     exit;
@@ -9,18 +8,17 @@ if (!isLoggedIn()) {
 
 $user = getCurrentUser();
 
-// Abmeldevorgang
 if (isset($_GET['logout'])) {
     logout();
 }
 
 $stmt = $pdo->prepare("SELECT setting_value FROM user_settings WHERE user_id = ? AND setting_name = 'time_windows'");
-// Benutzereinstellungen laden
+
 $stmt->execute([$user['id']]);
 $saved_settings = $stmt->fetch();
 $time_windows = $saved_settings ? $saved_settings['setting_value'] : '';
 
-// Einstellungen speichern
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_settings'])) {
     $settings = $_POST['time_windows'];
     

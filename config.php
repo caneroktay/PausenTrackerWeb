@@ -1,5 +1,4 @@
 <?php
-// Veritabanı Bağlantı Ayarları
 define('DB_HOST', 'localhost:3307');
 define('DB_USER', 'root');
 define('DB_PASS', '');
@@ -18,7 +17,7 @@ try {
         ]
     );
 } catch (PDOException $e) {
-    die("Veritabanı bağlantı hatası: " . $e->getMessage());
+    die("Datenbankverbindungsfehler: " . $e->getMessage());
 }
 
 

@@ -1,4 +1,4 @@
-![Pausen Tracker](img/README/PausenTracker_slayt.png)
+![Pausen Tracker](asset/img/README/PausenTracker_slayt.png)
 
 #### Diese Webanwendung ist eine funktionale „Pausentracker“-App, die zur Verfolgung und Verwaltung von Pausenzeiten entwickelt wurde.
 
@@ -63,4 +63,4 @@ define('DB_PASS', '');            // Ihr MySQL-Passwort
 
 ## DB Design
 
-![DB Design](img/README/pausentrckr_DB_design.png)
+![DB Design](asset/img/README/pausentrckr_DB_design.png)
